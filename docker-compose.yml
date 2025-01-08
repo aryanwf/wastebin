@@ -7,7 +7,7 @@ services:
     environment:
       - WASTEBIN_DATABASE_PATH=/data/state.db
       - WASTEBIN_TITLE=bin
-      - WASTEBIN_SIGNING_KEY=${WASTEBIN_SIGNING_KEY=}
+      - WASTEBIN_SIGNING_KEY=${WASTEBIN_SIGNING_KEY}
       - WASTEBIN_PASSWORD_SALT=${WASTEBIN_PASSWORD_SALT}
     ports:
       - "8088:8088"
