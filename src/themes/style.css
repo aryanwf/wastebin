@@ -13,7 +13,6 @@
 
   header {
     border-bottom: 1px solid #163855;
-    border-right: 1px solid #163855;
   }
 }
 
@@ -29,7 +28,6 @@
 
   header {
     border-bottom: 1px solid #d9d7d7;
-    border-right: 1px solid #d9d7d7;
   }
 
   h1 {
@@ -39,7 +37,11 @@
 
 @media screen and (max-width: 720px) {
   main {
-    padding: 0px !important;
+    padding: 0 !important;
+  }
+
+  header {
+    padding: 0 !important;
   }
 }
 
@@ -54,84 +56,68 @@ body {
   height: 100vh;
 }
 
+svg {
+  display: block;
+}
+
 #main-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: auto;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1em 0 1em;
-  user-select: none;
 }
 
 main {
   flex-grow: 1;
   padding: 1em 2em 1em 2em;
   user-select: none;
-
-  overflow: visible;
+  overflow: auto;
   min-height: 0;
 }
 
-#nav-title {
-  /* to cut off very long titles */
-  overflow: hidden;
+header {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em 0 1em;
+  user-select: none;
 }
 
-header ul {
-  margin: 0;
-  padding: 0;
+header .nav-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-width: 0;
+}
+
+header .nav-item {
   display: flex;
 }
 
-header li {
-  list-style: none;
-  display: inline-block;
+header .nav-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  white-space: nowrap;
 }
 
-header .navigation {
+header .nav-button {
+  display: flex;
   color: #39bae6;
   border: none;
   padding: 1rem;
   background: none;
-  font-family: "JetBrains Mono", monospace;
-  font-size: 1.125rem;
 }
 
-header .navigation:hover {
+header .nav-button:hover {
   background-color: #39bae6;
   color: #0f1419;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 #form {
   height: 100%;
-}
-
-h1 {
-  display: inline-block;
-  font-weight: normal;
-  font-size: 1.125rem;
-
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-left: 16px;
-  padding-right: 16px;
-
-  max-width: 80vw;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  vertical-align: text-bottom;
-  text-wrap-mode: nowrap;
-  user-select: text;
 }
 
 button {
@@ -141,6 +127,19 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.button {
+  width: 100%;
+  padding: 1em;
+  border: none;
+  border-radius: 8px;
+  background-color: #39bae6;
+}
+
+.button:hover {
+  background-color: #fa6e32;
+  transition: background-color 100ms;
 }
 
 select {
@@ -155,6 +154,10 @@ select > option:hover {
   color: #0f1419;
 }
 
+option {
+  border-radius: 4px;
+}
+
 input {
   font-family: "JetBrains Mono", monospace;
   font-size: 1.0625rem;
@@ -162,6 +165,7 @@ input {
   border-color: #39bae6;
   border-style: solid;
   border-width: 1px;
+  border-radius: 4px;
   box-sizing: border-box;
 }
 
@@ -196,19 +200,15 @@ a, a:visited, a:hover {
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 2em;
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
   height: 100%;
-  align-items: stretch;
-  justify-items: stretch;
 }
 
 .content {
-  grid-area: content;
-  grid-column: 1/2;
-  grid-row: 1/2;
+  display: flex;
+  flex: 1;
 }
 
 .content > textarea {
@@ -228,42 +228,26 @@ a, a:visited, a:hover {
 }
 
 .controls {
-  grid-row: 1/2;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 256px;
 }
 
-.expiration-list, .password, .paste-button, .title {
-  margin-top: 2em;
+.controls-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.extension-filter > input {
+.controls-row {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
-.password > input {
+.controls-row > input {
   width: 100%;
-}
-
-.title > input {
-  width: 100%;
-}
-
-.decrypt-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-gap: 0.5em;
-}
-
-.button {
-  width: 100%;
-  padding: 1em;
-  border: none;
-  background-color: #39bae6;
-}
-
-#code {
-  overflow: visible;
-  min-width: fit-content;
 }
 
 td.line-number {
@@ -300,17 +284,4 @@ td.line-number {
 
 .text-center {
   text-align: center;
-}
-
-#encrypted-grid1 {
-  grid-row: 1/2;
-}
-
-#encrypted-grid1 input {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-#encrypted-grid2 {
-  grid-row: 2/3;
 }
